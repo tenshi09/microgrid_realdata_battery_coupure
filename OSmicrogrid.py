@@ -64,7 +64,7 @@ def gestion_batterie(net_balance, battery_charge):
         besoin = -net_balance
         if battery_charge > 0:
             batt_action = -min(besoin, batt_power_max, battery_charge * 3600 / dt)
-            event = "🔋 Décharge batterie"
+            event = "Décharge batterie"
         else:
             event = "⚠️ Batterie vide"
     elif net_balance > 0 and battery_charge < battery_capacity:
@@ -78,15 +78,15 @@ def decision_coupures(net_balance, battery_charge, active_loads):
     if net_balance < 0 and battery_charge <= 0:
         if "Zone3" in active_loads:
             active_loads.remove("Zone3")
-            return active_loads, "❌ Coupure Zone 3"
+            return active_loads, "Coupure Zone 3"
         elif "Zone2" in active_loads:
             active_loads.remove("Zone2")
-            return active_loads, "⚡ Coupure Zone 2"
+            return active_loads, "Coupure Zone 2"
         elif "Zone1" in active_loads:
             active_loads.remove("Zone1")
-            return active_loads, "⛔ Coupure Zone 1"
+            return active_loads, "Coupure Zone 1"
         else:
-            return active_loads, "⛔ Coupure totale"
+            return active_loads, "Coupure totale"
     return active_loads, "Aucun événement"
 
 # Simulation
@@ -170,4 +170,4 @@ plt.suptitle("Simulation Microgrid : Éolien + Batterie avec Coupures Priorisée
 plt.tight_layout()
 plt.show()
 
-print("✅ Simulation avec batterie + coupures intelligente terminée !")
+print("Simulation terminée !")
